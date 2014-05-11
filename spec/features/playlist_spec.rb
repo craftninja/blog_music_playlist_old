@@ -35,4 +35,18 @@ feature 'User can manage a music playlist' do
     expect(page).to have_content(url)
   end
 
+  scenario 'User can delete songs' do
+    title = 'Epic Rap Battle - Geek v Nerd'
+    url = 'http://www.youtube.com/watch?v=2Tvy_Pbe5NA'
+    visit '/playlist'
+    click_on 'Add new Jam'
+    fill_in 'Title', with: title
+    fill_in 'URL', with: url
+    click_on 'Queue!'
+    click_on title
+    click_on 'Over it!'
+    expect(page).to have_no_content(title)
+    expect(page).to have_no_content(url)
+  end
+
 end

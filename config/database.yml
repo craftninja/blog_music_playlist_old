@@ -1,0 +1,19 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: blog_music_playlist_development
+
+test:
+  <<: *default
+  database: blog_music_playlist_test
+
+production:
+  <<: *default
+  database: blog_music_playlist_production
+  username: blog_music_playlist
+  password: <%= ENV['BLOG_MUSIC_PLAYLIST_DATABASE_PASSWORD'] %>

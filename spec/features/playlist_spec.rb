@@ -14,4 +14,25 @@ feature 'User can manage a music playlist' do
     expect(page).to have_content(title)
     expect(page).to have_content(url)
   end
+
+  scenario 'User can update songs' do
+    old_title = 'Touch'
+    title = 'Holy Other - Touch'
+    url = 'https://soundcloud.com/holyother/touch'
+    visit '/playlist'
+    click_on 'Add new Jam'
+    fill_in 'Title', with: old_title
+    fill_in 'URL', with: url
+    click_on 'Queue!'
+    click_on old_title
+    expect(page).to have_content(old_title)
+    expect(page).to have_content(url)
+    click_on 'Edit'
+    fill_in 'Title', with: title
+    fill_in 'URL', with: url
+    click_on 'Update'
+    expect(page).to have_content(title)
+    expect(page).to have_content(url)
+  end
+
 end
